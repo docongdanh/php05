@@ -40,6 +40,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+
     <script src="js/bootstrap-datepicker.js"></script>
 </head>
 
@@ -53,7 +54,7 @@
                         <h3 class="panel-title">Please Register</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="register_complete.php" method="post" enctype="multipart/form-data">
+                        <form role="form" method="POST" action = "<?php echo $_SERVER['PHP_SELF'];?>" enctype="multipart/form-data" >
                             <fieldset>
                                 <div class="form-group">
                                     <label>First name</label>
@@ -64,9 +65,21 @@
                                     <input class="form-control" placeholder="Last name" name="last_name" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
+                                    <label>Username</label>
+                                    <input class="form-control" placeholder="User name" name="username" type="text" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input class="form-control" placeholder="Pass name" name="password" type="text" autofocus>
+                                </div>
+                                 <div class="form-group">
+                                    <label>Avatar</label>
+                                        <input type="file" name="avatar">
+                                    </div>
+                                <div class="form-group">
                                     <label>Birthday</label>
                                     <div class='input-group date' id='birthday'>
-                                        <input type='text' class="form-control" />
+                                        <input type='text' name="birthday" class="form-control" />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -75,10 +88,10 @@
                                 <div class="form-group">
                                     <label>Gender</label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="gender" id="gender" value="option2"> Male
+                                        <input type="radio" name="gender" value="1"> Male
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="gender" id="gender" value="option3">Female
+                                        <input type="radio" name="gender"  value="2">Female
                                     </label>
                                 </div>
                                 <div class="form-group">
@@ -89,30 +102,6 @@
                                     <label>Phone</label>
                                     <input class="form-control" placeholder="phone" name="phone" type="text" autofocus>
                                 </div>
-                                <div class="form-group">
-                                    <label>Created</label>
-                                    <input class="form-control" placeholder="Created" name="created" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <label>Modified</label>
-                                    <input class="form-control" placeholder="Modified" name="modified" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <label>City ID</label>
-                                    <input class="form-control" placeholder="City_ID" name="city_id" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <label>Avatar</label>
-                                    <input class="form-control" placeholder="Avatar" name="avatar" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input class="form-control" placeholder="Password" name="password" type="password" autofocus>
-                                </div>
                                  <button type="submit" name = "register" class="btn btn-primary btn-lg">Register</button>
                             </fieldset>
                         </form>
@@ -121,13 +110,33 @@
             </div>
         </div>
     </div>
+    <!-- code PHP -->
+    <?php 
+        //Message error
+        $errorFistName = "";
+        //Check submit register
+        if(isset($_POST["register"])) {
+            //check validate
+            $check = true;
+            //Check input first_name
+            $first_name = $_POST['first_name'];
+            if($first_name == ""){
+                $errorFistName = "Please input first name";
+                $check = false;
+            }
+            
+            //Check: if not error then insert database
+            if($check){
+                //insert data to users table
+            }
 
+        }
+    ?>
     <script type="text/javascript">
-             $(function () {
-                 $('#birthday').datepicker();
-             });
-     </script>
+        $(document).ready(function(){
+            $('#birthday').datepicker({ format: 'dd/mm/yyyy' });
+        });
+    </script>
 </body>
 
 </html>
-Contact GitHub 
